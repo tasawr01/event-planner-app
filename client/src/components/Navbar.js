@@ -7,16 +7,22 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isUpdatingPassword, setIsUpdatingPassword] = useState(false);
   const [newPassword, setNewPassword] = useState("");
+  const [reEnterPassword, setReEnterPassword] = useState(""); // New state for re-entering password
   const [oldPassword, setOldPassword] = useState("");
   const [error, setError] = useState("");
   const user = JSON.parse(localStorage.getItem("user"));
 
   const handlePasswordUpdate = async () => {
-    if (!oldPassword.trim() || !newPassword.trim()) {
+    if (!oldPassword.trim() || !newPassword.trim() || !reEnterPassword.trim()) {
       setError("Please fill in all fields.");
       return;
     }
   
+    if (newPassword !== reEnterPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
     try {
       const response = await API.post(`users/update-password/${user._id}`, { oldPassword, newPassword });
       if (response.status === 200) {
@@ -24,6 +30,7 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
         setIsUpdatingPassword(false); // Close the update password form
         setOldPassword(""); // Reset form fields
         setNewPassword("");
+        setReEnterPassword(""); // Reset re-enter password field
         setError("");
       }
     } catch (error) {
@@ -127,8 +134,8 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
                     <label className="block text-sm">Re-Enter New Password</label>
                     <input
                       type="password"
-                      value={newPassword}
-                      onChange={(e) => setNewPassword(e.target.value)}
+                      value={reEnterPassword}
+                      onChange={(e) => setReEnterPassword(e.target.value)} // Update state for re-enter password
                       className="w-full px-3 py-2 rounded-lg border border-[#444444] bg-[#2A2A2A] text-[#D1D1D1] shadow-sm focus:ring-2 focus:ring-[#F4B8A5] focus:outline-none"
                     />
                   </div>
