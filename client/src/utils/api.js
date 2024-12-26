@@ -1,8 +1,12 @@
 import axios from 'axios';
 
-// Creating an instance of axios to add base URL and authentication token
+// Check if we are in a production environment (Vercel deployed app)
+const isProduction = window.location.hostname !== 'localhost';
+
 const API = axios.create({
-  baseURL: 'http://localhost:5000/api', // Backend API URL
+  baseURL: isProduction
+    ? 'https://event-planner-app-backend.vercel.app/api'  // Deployed backend API URL
+    : 'http://localhost:5000/api',                        // Local backend API URL
 });
 
 // Intercepting request to add auth token in headers
