@@ -15,7 +15,7 @@ connectDB();
 const app = express();
 const cors = require('cors');
 app.use(cors({
-  origin: 'https://your-vercel-domain.vercel.app', // Your Vercel frontend URL
+  origin: 'https://event-planner-app-frontend-fawn.vercel.app/', // Your Vercel frontend URL
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
