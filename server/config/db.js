@@ -4,10 +4,8 @@ const connectDB = async () => {
   try {
     const mongoURI = 'mongodb+srv://mixavob561:uv68NRZwTptjDJXU@event.gc2i9.mongodb.net/?retryWrites=true&w=majority&appName=Event';
     
-    await mongoose.connect(mongoURI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    // Removed deprecated options
+    await mongoose.connect(mongoURI);
     console.log('MongoDB connected');
   } catch (err) {
     console.error('Error connecting to MongoDB:', err.message);
