@@ -1,12 +1,12 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const connectDB = require('./config/db');
-const authRoutes = require('./routes/authRoutes');
-const eventRoutes = require('./routes/eventRoutes');
-const checklistRoutes = require('./routes/checklistRoutes');
-const notificationRoutes = require('./routes/notificationRoutes');
-const userRoutes = require('./routes/userRoutes');
+const connectDB = require('../config/db');
+const authRoutes = require('../routes/authRoutes');
+const eventRoutes = require('../routes/eventRoutes');
+const checklistRoutes = require('../routes/checklistRoutes');
+const notificationRoutes = require('../routes/notificationRoutes');
+const userRoutes = require('../routes/userRoutes');
 
 
 dotenv.config();
