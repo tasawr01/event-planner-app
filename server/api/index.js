@@ -12,8 +12,22 @@ dotenv.config();
 connectDB();
 
 const app = express();
-app.use(corsLib({  // Use `corsLib` instead of `cors`
-  origin: 'https://event-planner-app-frontend-fawn.vercel.app', // Your Vercel frontend URL
+
+// List of allowed origins
+const allowedOrigins = [
+  'http://localhost:3000', // Localhost for development
+  'https://event-planner-app-frontend-fawn.vercel.app' // Vercel frontend URL
+];
+
+app.use(corsLib({
+  origin: (origin, callback) => {
+    // If the origin is in the allowedOrigins list or the origin is not provided (e.g. in case of direct server-side requests), allow the request
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token'],
   credentials: true
