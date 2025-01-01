@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import API from "../utils/api"; // Your API utility to handle requests
+import API from "../utils/api";
 
 const Navbar = ({ isAuthenticated, onLogout }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -48,7 +48,6 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
   return (
     <nav className="bg-gradient-to-r from-[#1D1D1D] to-[#121212] text-[#D1D1D1] shadow-lg fixed top-0 left-0 w-full z-20">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-        {/* Hamburger Button for Mobile Menu */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="lg:hidden text-white text-3xl focus:outline-none"
@@ -56,14 +55,12 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
           ☰
         </button>
 
-        {/* Logo */}
         <div className="text-2xl font-extrabold mx-auto lg:mx-0">
           <Link to="/" className="hover:text-[#F4B8A5] transition-colors duration-300">
             Task Sync Solutions
           </Link>
         </div>
 
-        {/* Center Navigation Links (Hidden on small screens) */}
         <div className="hidden lg:flex space-x-4">
           <Link
             to="/events"
@@ -85,11 +82,9 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
           </Link>
         </div>
 
-        {/* Profile Section */}
         <div className="relative">
           {isAuthenticated && (
             <>
-              {/* Profile Button (Desktop) */}
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="hidden lg:flex items-center text-white px-3 py-2 rounded-full text-sm"
@@ -98,7 +93,6 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
                 <span className="material-icons-outlined text-3xl">account_circle</span>
               </button>
 
-              {/* Profile Button (Mobile) */}
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="lg:hidden flex items-center text-white px-3 py-2 rounded-full text-sm"
@@ -106,7 +100,6 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
                 <span className="material-icons-outlined text-3xl">account_circle</span>
               </button>
 
-              {/* Dropdown Menu */}
               {isDropdownOpen && (
                 <div className="absolute top-full right-0 mt-2 bg-[#1D1D1D] text-[#D1D1D1] border border-[#4ECDC4] rounded-lg shadow-lg w-64 z-30">
                   <div className="px-4 py-2 border-b border-[#4ECDC4]">
@@ -130,7 +123,6 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
                 </div>
               )}
 
-              {/* Update Password Form */}
               {isUpdatingPassword && (
                 <div className="absolute top-full right-0 mt-2 bg-[#1D1D1D] text-[#D1D1D1] border border-[#4ECDC4] rounded-lg shadow-lg w-64 z-30 px-4 py-2">
                   <h4 className="text-lg font-bold mb-2">Update Password</h4>
@@ -181,7 +173,6 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-[#1D1D1D] text-[#D1D1D1] px-6 py-4 space-y-2">
           <Link

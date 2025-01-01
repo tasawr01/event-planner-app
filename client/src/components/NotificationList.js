@@ -23,7 +23,6 @@ const NotificationList = () => {
             const currentTime = new Date().getTime();
             const timeDifference = eventTime - currentTime;
 
-            // 1 minute left (within the range of 0 to 60 seconds)
             return timeDifference > 0 && timeDifference <= 60000;
           })
           .map((event) => ({
@@ -37,11 +36,9 @@ const NotificationList = () => {
       }
     };
 
-    // Fetch events initially and then every second
     fetchEventsAndCheckDeadlines();
     intervalId = setInterval(fetchEventsAndCheckDeadlines, 1000);
 
-    // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
   }, [user._id]);
 

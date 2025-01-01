@@ -107,12 +107,12 @@ const EventList = () => {
   
     if (diff <= 0) return "Event has passed";
   
-    const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25)); // Calculate years
-    const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30.44)) % 12; // Calculate months
-    const days = Math.floor((diff / (1000 * 60 * 60 * 24)) % 30.44); // Calculate remaining days
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24); // Calculate hours
-    const minutes = Math.floor((diff / (1000 * 60)) % 60); // Calculate minutes
-    const seconds = Math.floor((diff / 1000) % 60); // Calculate seconds
+    const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+    const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30.44)) % 12;
+    const days = Math.floor((diff / (1000 * 60 * 60 * 24)) % 30.44);
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
   
     return `${years}y ${months}m ${days}d ${hours}h ${minutes}m ${seconds}s`;
   };

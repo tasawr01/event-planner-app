@@ -80,7 +80,7 @@ const Checklist = () => {
           )
         );
         setShowEditModal(false);
-        setEditedItemName(""); // Clear edited item name
+        setEditedItemName("");
       } catch (err) {
         console.error("Error editing checklist item:", err);
       }

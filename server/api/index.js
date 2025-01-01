@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const corsLib = require('cors');  // Renamed import to `corsLib`
+const corsLib = require('cors');
 const connectDB = require('../config/db');
 const authRoutes = require('../routes/authRoutes');
 const eventRoutes = require('../routes/eventRoutes');
@@ -13,15 +13,13 @@ connectDB();
 
 const app = express();
 
-// List of allowed origins
 const allowedOrigins = [
-  'http://localhost:3000', // Localhost for development
-  'https://event-planner-app-frontend-fawn.vercel.app' // Vercel frontend URL
+  'http://localhost:3000',
+  'https://event-planner-app-frontend-fawn.vercel.app'
 ];
 
 app.use(corsLib({
   origin: (origin, callback) => {
-    // If the origin is in the allowedOrigins list or the origin is not provided (e.g. in case of direct server-side requests), allow the request
     if (allowedOrigins.includes(origin) || !origin) {
       callback(null, true);
     } else {
