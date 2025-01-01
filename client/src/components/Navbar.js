@@ -24,7 +24,10 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
     }
 
     try {
-      const response = await API.post(`users/update-password/${user._id}`, { oldPassword, newPassword });
+      const response = await API.post(`users/update-password/${user._id}`, {
+        oldPassword,
+        newPassword,
+      });
       if (response.status === 200) {
         alert(response.data.message);
         setIsUpdatingPassword(false);
@@ -62,29 +65,48 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
 
         {/* Center Navigation Links (Hidden on small screens) */}
         <div className="hidden lg:flex space-x-4">
-          <Link to="/events" className="text-[#D1D1D1] hover:text-[#4ECDC4] px-4 py-2 transition-colors duration-300">
+          <Link
+            to="/events"
+            className="text-[#D1D1D1] hover:text-[#4ECDC4] px-4 py-2 transition-colors duration-300"
+          >
             Events
           </Link>
-          <Link to="/checklist" className="text-[#D1D1D1] hover:text-[#4ECDC4] px-4 py-2 transition-colors duration-300">
+          <Link
+            to="/checklist"
+            className="text-[#D1D1D1] hover:text-[#4ECDC4] px-4 py-2 transition-colors duration-300"
+          >
             Checklist
           </Link>
-          <Link to="/notifications" className="text-[#D1D1D1] hover:text-[#4ECDC4] px-4 py-2 transition-colors duration-300">
+          <Link
+            to="/notifications"
+            className="text-[#D1D1D1] hover:text-[#4ECDC4] px-4 py-2 transition-colors duration-300"
+          >
             Notifications
           </Link>
         </div>
 
-        {/* Profile Dropdown */}
+        {/* Profile Section */}
         <div className="relative">
           {isAuthenticated && (
             <>
+              {/* Profile Button (Desktop) */}
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex items-center text-white px-3 py-2 rounded-full text-sm"
+                className="hidden lg:flex items-center text-white px-3 py-2 rounded-full text-sm"
               >
                 <span className="mr-2 font-bold text-lg">{user.username}</span>
                 <span className="material-icons-outlined text-3xl">account_circle</span>
               </button>
 
+              {/* Profile Button (Mobile) */}
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="lg:hidden flex items-center text-white px-3 py-2 rounded-full text-sm"
+              >
+                <span className="material-icons-outlined text-3xl">account_circle</span>
+              </button>
+
+              {/* Dropdown Menu */}
               {isDropdownOpen && (
                 <div className="absolute top-full right-0 mt-2 bg-[#1D1D1D] text-[#D1D1D1] border border-[#4ECDC4] rounded-lg shadow-lg w-64 z-30">
                   <div className="px-4 py-2 border-b border-[#4ECDC4]">
@@ -108,6 +130,7 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
                 </div>
               )}
 
+              {/* Update Password Form */}
               {isUpdatingPassword && (
                 <div className="absolute top-full right-0 mt-2 bg-[#1D1D1D] text-[#D1D1D1] border border-[#4ECDC4] rounded-lg shadow-lg w-64 z-30 px-4 py-2">
                   <h4 className="text-lg font-bold mb-2">Update Password</h4>
